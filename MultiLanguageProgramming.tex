@@ -1,11 +1,11 @@
 \documentclass[dvipdfmx]{beamer}
 %テーマの設定
-\usetheme{metropolis}
+\usetheme[numbering=fullbar]{focus}
 %パッケージの設定
 \usepackage{graphicx}
 \usepackage{pxjahyper}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows.meta,positioning}
 
 %フォント設定
 \renewcommand{\kanjifamilydefault}{\gtdefault}
@@ -16,21 +16,115 @@
 \author[電研]{電気技術研究会}
 \institute[NITNC]{NIT, Nara Collage}
 \date[\today]{\today}
+\titlegraphic{
+  \begin{tikzpicture}[overlay, remember picture]
+    \node[at=(current page.north east), anchor=north east]{
+      \includegraphics[height=0.15\textheight]{pic/Logo(2).png}
+      \hspace{0.05\textwidth}
+    };
+  \end{tikzpicture}
+}
 
 \begin{document}
 
-\begin{frame}[plain,noframenumbering]
+\begin{frame}[plain]
   \titlepage
-  \begin{flushright}
-    \includegraphics[width=1.5cm]{pic/Logo(2).png}
-    
-  \end{flushright}
-\end{frame}
-
-\begin{frame}{目次}
-  \tableofcontents
 \end{frame}
 
 
+\section{概要}
 
+  \begin{frame}{講義目的と進め方}
+    講義目的
+    \begin{itemize}
+      \setlength{\itemsep}{3mm}
+      \item \structure{多言語}にわたるプログラミングを\structure{独学する}術を身に付ける
+      \item 基本的な\structure{用語}や\structure{技術}を学び、\structure{活かせる力}を身に付ける
+      \item マイコンやウェブなど、\structure{広い範囲に適応できる}人材育成
+    \end{itemize}
+    \vfill
+    進め方    
+    \begin{itemize}
+      \setlength{\itemsep}{3mm}
+      \item 重要な\structure{章}ごとにまとめて講義
+      \item １日（\structure{２～３時間}）\structure{１～２}章分を進めたい
+      \item 各章ごとに\structure{演習}がある
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{カリキュラム}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[pre-subj] (a) at (0.15\textwidth,0.375\textheight){プログラミング};
+      \node[pre-subj,below=10pt of a] (b) {変数とデータ型};
+      \node[pre-subj,below=10pt of b] (c) {演算と演算子};
+      \node[pre-subj,below=10pt of c] (d) {制御構文};
+      \node[pre-subj,below=10pt of d] (e) {配列};
+      \node[pre-subj,right=10pt of e] (f) {オブジェクト};
+      \node[pre-subj,above=10pt of f] (g) {関数};
+      \node[pre-subj,above=10pt of g] (h) {ポインタ};
+      \node[pre-subj,above=10pt of h,align=center] (i) {オブジェクト\\指向構文};
+      \node[pre-subj,above=10pt of i] (j) {コンピュータ基礎};
+      \node[pre-subj,right=10pt of j,align=center] (k) {マイコン\\プログラミング};
+      \node[pre-subj,below=10pt of k] (l) {IoT};
+      \node[pre-subj,below=10pt of l,align=center] (m) {プログラミング\\解析};
+      \node[pre-subj,below=10pt of m] (n) {コードの可読性};
+      \node[pre-subj,below=10pt of n] (o) {言語の学習法};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section{プログラミングとは}
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[now-subj] (a) at (0.15\textwidth,0.375\textheight){プログラミング};
+      \node[pre-subj,below=10pt of a] (b) {変数とデータ型};
+      \node[pre-subj,below=10pt of b] (c) {演算と演算子};
+      \node[pre-subj,below=10pt of c] (d) {制御構文};
+      \node[pre-subj,below=10pt of d] (e) {配列};
+      \node[pre-subj,right=10pt of e] (f) {オブジェクト};
+      \node[pre-subj,above=10pt of f] (g) {関数};
+      \node[pre-subj,above=10pt of g] (h) {ポインタ};
+      \node[pre-subj,above=10pt of h,align=center] (i) {オブジェクト\\指向構文};
+      \node[pre-subj,above=10pt of i] (j) {コンピュータ基礎};
+      \node[pre-subj,right=10pt of j,align=center] (k) {マイコン\\プログラミング};
+      \node[pre-subj,below=10pt of k] (l) {IoT};
+      \node[pre-subj,below=10pt of l,align=center] (m) {プログラミング\\解析};
+      \node[pre-subj,below=10pt of m] (n) {コードの可読性};
+      \node[pre-subj,below=10pt of n] (o) {言語の学習法};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+  \begin{frame}{プログラミングについて}
+    プログラミングどんなもの？
+    \begin{itemize}
+      \setlength{\itemsep}{3mm}
+      \item プログラミングには様々な種類が存在\\ウェブ、マイコン、ゲーム...etc
+      \item 大まかには２種類\\\structure{オブジェクト指向}と\structure{構造化プログラミング}（後述）
+      \item \structure{骨格}は基本的に共通\\関数や変数など、基本的な\structure{骨格}がある
+    \end{itemize}
+    \vfill
+    プログラミング言語
+    \begin{itemize}
+      \setlength{\itemsep}{3mm}
+      \item \structure{言語}は多数ある\par C, C++, C\#, JavaScript, VisualBasic, Python, \LaTeX
+      \item 本教材では主に\structure{JavsScript}とArduinoによる\structure{C++}を使用
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{基本的な骨格とは}
+    \begin{itemize}
+      \item 冒頭で\structure{ライブラリ}の宣言
+      \item \structure{メインループ}で処理、UI等の場合では\structure{イベント}を処理
+      \item \structure{サブルーチン（関数）}にて繰り返し処理
+    \end{itemize}
+  \end{frame}
 \end{document}
