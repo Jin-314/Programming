@@ -5,10 +5,11 @@
 %パッケージの設定
 \usepackage{graphicx}
 \usepackage{pxjahyper}
+\usepackage{hyperref}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning}
 \usepackage{listings, jlisting}
-\usepackage{listings-arduino, listings-javascript}
+\usepackage{listings-arduino, listings-html5, listings-javascript}
 \usepackage{xcolor}
 
 %色設定
@@ -19,15 +20,13 @@
 
 %ソースコード設定
 \lstset{
-  basicstyle={\ttfamily},                         % 基礎の文字のフォント設定
+  basicstyle={\ttfamily\footnotesize},                         % 基礎の文字のフォント設定
   identifierstyle={\color{identifier}},           % 変数名などのフォント設定
   commentstyle   ={\color{comment}},              % コメントのフォント設定
   keywordstyle   =[1]{\color{keyword}},           % 予約語のフォント設定
   stringstyle    ={\ttfamily\color{string}},      % 文字列のフォント設定
-  tabsize=2,
-  columns=fixed,
+  tabsize=2
 }
-
 
 %フォント設定
 \renewcommand{\kanjifamilydefault}{\gtdefault}
@@ -53,21 +52,22 @@
   \titlepage
 \end{frame}
 
-
-\section{概要}
-
+\section*{概要}
+  \begin{frame}[plain,noframenumbering]
+    \sectionpage
+  \end{frame}
   \begin{frame}{講義目的と進め方}
-    講義目的
+    \begin{large}講義目的\end{large}
     \begin{itemize}
-      \setlength{\itemsep}{3mm}
+      \setlength{\itemsep}{5mm}
       \item \structure{多言語}にわたるプログラミングを\structure{独学する}術を身に付ける
       \item 基本的な\structure{用語}や\structure{技術}を学び、\structure{活かせる力}を身に付ける
       \item マイコンやウェブなど、\structure{広い範囲に適応できる}人材育成
     \end{itemize}
     \vfill
-    進め方    
+    \begin{large}進め方\end{large}
     \begin{itemize}
-      \setlength{\itemsep}{3mm}
+      \setlength{\itemsep}{5mm}
       \item 重要な\structure{章}ごとにまとめて講義
       \item １日（\structure{２～３時間}）\structure{１～２}章分を進めたい
       \item 各章ごとに\structure{演習}がある
@@ -78,47 +78,51 @@
     \begin{tikzpicture}
       [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
       pre-subj/.style={fill=blue!20},post-subj/.style={fill=black!20},overlay, remember picture]
-      \node[pre-subj] (a) at (0.15\textwidth,0.375\textheight){プログラミング};
-      \node[pre-subj,below=10pt of a] (b) {変数とデータ型};
-      \node[pre-subj,below=10pt of b] (c) {演算と演算子};
-      \node[pre-subj,below=10pt of c] (d) {制御構文};
-      \node[pre-subj,below=10pt of d] (e) {配列};
-      \node[pre-subj,right=10pt of e] (f) {オブジェクト};
-      \node[pre-subj,above=10pt of f] (g) {関数};
-      \node[pre-subj,above=10pt of g] (h) {ポインタ};
-      \node[pre-subj,above=10pt of h,align=center] (i) {オブジェクト\\指向構文};
-      \node[pre-subj,above=10pt of i] (j) {コンピュータ基礎};
-      \node[pre-subj,right=10pt of j,align=center] (k) {マイコン\\プログラミング};
-      \node[pre-subj,below=10pt of k] (l) {IoT};
-      \node[pre-subj,below=10pt of l,align=center] (m) {プログラミング\\解析};
-      \node[pre-subj,below=10pt of m] (n) {コードの可読性};
-      \node[pre-subj,below=10pt of n] (o) {言語の学習法};
+      \node[pre-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[pre-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[pre-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[pre-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[pre-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[pre-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[pre-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[pre-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[pre-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[pre-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[pre-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
       \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
         \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
       }
     \end{tikzpicture}
   \end{frame}
 
-\section{プログラミングとは}
+\section*{プログラミングとは}
+  \begin{frame}[plain,noframenumbering]
+    \label{programming}
+    \sectionpage
+  \end{frame}
   \begin{frame}{進度}
     \begin{tikzpicture}
       [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
       pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
-      \node[now-subj] (a) at (0.15\textwidth,0.375\textheight){プログラミング};
-      \node[pre-subj,below=10pt of a] (b) {変数とデータ型};
-      \node[pre-subj,below=10pt of b] (c) {演算と演算子};
-      \node[pre-subj,below=10pt of c] (d) {制御構文};
-      \node[pre-subj,below=10pt of d] (e) {配列};
-      \node[pre-subj,right=10pt of e] (f) {オブジェクト};
-      \node[pre-subj,above=10pt of f] (g) {関数};
-      \node[pre-subj,above=10pt of g] (h) {ポインタ};
-      \node[pre-subj,above=10pt of h,align=center] (i) {オブジェクト\\指向構文};
-      \node[pre-subj,above=10pt of i] (j) {コンピュータ基礎};
-      \node[pre-subj,right=10pt of j,align=center] (k) {マイコン\\プログラミング};
-      \node[pre-subj,below=10pt of k] (l) {IoT};
-      \node[pre-subj,below=10pt of l,align=center] (m) {プログラミング\\解析};
-      \node[pre-subj,below=10pt of m] (n) {コードの可読性};
-      \node[pre-subj,below=10pt of n] (o) {言語の学習法};
+      \node[now-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[pre-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[pre-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[pre-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[pre-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[pre-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[pre-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[pre-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[pre-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[pre-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[pre-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
       \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
         \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
       }
@@ -126,7 +130,7 @@
   \end{frame}
 
   \begin{frame}{プログラミングについて}
-    プログラミングどんなもの？
+    \begin{large}プログラミングどんなもの？\end{large}
     \begin{itemize}
       \setlength{\itemsep}{3mm}
       \item プログラミングには様々な種類が存在\\ウェブ、マイコン、ゲーム...etc
@@ -134,7 +138,7 @@
       \item \structure{骨格}は基本的に共通\\関数や変数など、基本的な\structure{骨格}がある
     \end{itemize}
     \vfill
-    プログラミング言語
+    \begin{large}プログラミング言語\end{large}
     \begin{itemize}
       \setlength{\itemsep}{3mm}
       \item \structure{言語}は多数ある\par C, C++, C\#, JavaScript, VisualBasic, Python, \LaTeX
@@ -150,20 +154,23 @@
           \item \structure{メインループ}で処理\\UI等の場合では\structure{イベント}を処理
           \item \structure{サブルーチン（関数）}にて\\繰り返し処理
         \end{itemize}
-        \begin{exampleblock}{C言語の例}
-          \begin{lstlisting}[language=C]
+        \centering
+        \begin{minipage}{0.8\textwidth}
+          \begin{exampleblock}{C言語の例}
+            \begin{lstlisting}[language=C]
 #include <stdio.h>
+
 int main(void){
   printf('Hello World');
   return 0;
-}
-    
-          \end{lstlisting}
-        \end{exampleblock}
+}    
+            \end{lstlisting}
+          \end{exampleblock}
+        \end{minipage}
       \end{column}
       \begin{column}{0.4\textwidth}
         \begin{exampleblock}{Arduinoの例}
-          \begin{lstlisting}[language=Arduino,basicstyle=\footnotesize]
+          \begin{lstlisting}[language=Arduino]
 void setup(){
   pinMode(2, OUTPUT);
 }
@@ -179,5 +186,497 @@ void loop(){
       \end{column}
     \end{columns}
   \end{frame}
+
+  \begin{frame}[fragile]{演習１：問題}{プログラミングとは}
+    \begin{columns}
+      \begin{column}{0.55\textwidth}
+        \begin{large}JavaScript動作確認\end{large}
+        \begin{enumerate}
+          \setlength{\itemsep}{3mm}
+          \item \structure{VSCode}の作業フォルダを作成
+          \item {\color{string}'Hello World'}を表示させる
+        \end{enumerate}
+        \vspace{5mm}
+        \begin{large}HTMLファイルへの埋め込み\end{large}
+        \begin{itemize}
+          \setlength{\itemsep}{3mm}
+          \item \structure{html}ファイルの\structure{<script>}タグ内
+          \item ディスプレイさせる関数\\
+          \lstinline[language=javascript]|document.writeln('|{\color{string}文字列 '}\lstinline[language=javascript]|)|
+          \item 文末には\structure{；}(\structure{セミコロン})をつける
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.45\textwidth}
+        \begin{exampleblock}{htmlテンプレート}
+          \begin{lstlisting}[language=html5,basicstyle=\tiny]
+<html>
+<head>
+<meta
+  http-equiv="Content-Type"
+  content="text/html; charset=UTF-8">
+<title>Hello，World！</title>
+</head>
+<body>
+<pre>
+<script type="text/javascript">
+  // ここにスクリプトを記述
+</script>
+<noscript>
+  JavaScriptが利用できません。
+</noscript>
+</pre>
+</body>
+</html>
+
+          \end{lstlisting}
+        \end{exampleblock}
+      \end{column}
+    \end{columns}
+  \end{frame}
+
+  \begin{frame}{演習１：回答}{プログラミングとは}
+    \begin{exampleblock}{演習１}
+      \lstinputlisting[language=javascript]{Ensyu/Ensyu1/Ensyu1.js}
+    \end{exampleblock}
+  \end{frame}
+
+\section*{変数とデータ型}
+  \begin{frame}[plain,noframenumbering]
+    \label{hensu}
+    \sectionpage
+  \end{frame}
+
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[now-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[pre-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[pre-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[pre-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[pre-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[pre-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[pre-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[pre-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[pre-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[pre-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
   
+\section*{演算と演算子}
+  \begin{frame}[plain,noframenumbering]
+    \label{enzan}
+    \sectionpage
+  \end{frame}
+  
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[now-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[pre-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[pre-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[pre-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[pre-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[pre-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[pre-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[pre-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[pre-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{制御構文}
+  \begin{frame}[plain,noframenumbering]
+    \label{seigyo}
+    \sectionpage
+  \end{frame}
+  
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[now-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[pre-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[pre-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[pre-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[pre-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[pre-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[pre-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[pre-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{配列}
+  \begin{frame}[plain,noframenumbering]
+    \label{hairetsu}
+    \sectionpage
+  \end{frame}
+  
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[post-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[now-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[pre-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[pre-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[pre-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[pre-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[pre-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[pre-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{オブジェクト}
+  \begin{frame}[plain,noframenumbering]
+    \label{object}
+    \sectionpage
+  \end{frame}
+  
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[post-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[post-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[now-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[pre-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[pre-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[pre-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[pre-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[pre-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{関数}
+  \begin{frame}[plain,noframenumbering]
+    \label{kansu}
+    \sectionpage
+  \end{frame}
+  
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[post-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[post-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[post-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[now-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[pre-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[pre-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[pre-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[pre-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{ポインタ}
+  \begin{frame}[plain,noframenumbering]
+    \label{pointa}
+    \sectionpage
+  \end{frame}
+
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[post-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[post-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[post-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[post-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[now-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[pre-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[pre-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[pre-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+  
+\section*{オブジェクト指向構文}
+  \begin{frame}[plain,noframenumbering]
+    \label{objectbun}
+    \sectionpage
+  \end{frame}
+
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[post-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[post-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[post-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[post-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[post-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[now-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[pre-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[pre-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{コンピュータ基礎}
+  \begin{frame}[plain,noframenumbering]
+    \label{computer}
+    \sectionpage
+  \end{frame}
+
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[post-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[post-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[post-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[post-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[post-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[post-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[now-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[pre-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{マイコン}
+  \begin{frame}[plain,noframenumbering]
+    \label{micom}
+    \sectionpage
+  \end{frame}
+  
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[post-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[post-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[post-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[post-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[post-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[post-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[post-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[now-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[pre-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{IoT}
+  \begin{frame}[plain,noframenumbering]
+    \label{iot}
+    \sectionpage
+  \end{frame}
+
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[post-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[post-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[post-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[post-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[post-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[post-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[post-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[post-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[now-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[pre-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{プログラム解析}
+  \begin{frame}[plain,noframenumbering]
+    \label{analys}
+    \sectionpage
+  \end{frame}
+
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[post-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[post-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[post-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[post-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[post-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[post-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[post-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[post-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[post-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[now-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[pre-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{コードの可読性}
+  \begin{frame}[plain,noframenumbering]
+    \label{readability}
+    \sectionpage
+  \end{frame}
+
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[post-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[post-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[post-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[post-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[post-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[post-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[post-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[post-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[post-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[post-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[now-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[pre-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{言語の学習法}
+  \begin{frame}[plain,noframenumbering]
+    \label{learn}
+    \sectionpage
+  \end{frame}
+  
+  \begin{frame}{進度}
+    \begin{tikzpicture}
+      [every node/.style={rounded corners,inner sep=5pt, minimum width=100pt,minimum height=35pt},
+      pre-subj/.style={fill=blue!20},now-subj/.style={white,fill=black!50!green},post-subj/.style={fill=black!20},overlay, remember picture]
+      \node[post-subj] (a) at (0.15\textwidth,0.375\textheight){\hyperlink{programming}{プログラミング}};
+      \node[post-subj,below=10pt of a] (b) {\hyperlink{hensu}{変数とデータ型}};
+      \node[post-subj,below=10pt of b] (c) {\hyperlink{enzan}{演算と演算子}};
+      \node[post-subj,below=10pt of c] (d) {\hyperlink{seigyo}{制御構文}};
+      \node[post-subj,below=10pt of d] (e) {\hyperlink{hairetsu}{配列}};
+      \node[post-subj,right=10pt of e] (f) {\hyperlink{object}{オブジェクト}};
+      \node[post-subj,above=10pt of f] (g) {\hyperlink{kansu}{関数}};
+      \node[post-subj,above=10pt of g] (h) {\hyperlink{pointa}{ポインタ}};
+      \node[post-subj,above=10pt of h] (i) {\hyperlink{objectbun}{オブジェクト構文}};
+      \node[post-subj,above=10pt of i] (j) {\hyperlink{computer}{コンピュータ基礎}};
+      \node[post-subj,right=10pt of j] (k) {\hyperlink{micom}{マイコン}};
+      \node[post-subj,below=10pt of k] (l) {\hyperlink{iot}{IoT}};
+      \node[post-subj,below=10pt of l] (m) {\hyperlink{analys}{プログラム解析}};
+      \node[post-subj,below=10pt of m] (n) {\hyperlink{readability}{コードの可読性}};
+      \node[now-subj,below=10pt of n] (o) {\hyperlink{learn}{言語の学習法}};
+      \foreach \x / \y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k,k/l,l/m,m/n,n/o}{
+        \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
+      }
+    \end{tikzpicture}
+  \end{frame}
+
+\section*{問題解決能力}
+  \begin{frame}[plain,noframenumbering]
+    \sectionpage
+  \end{frame}
+
 \end{document}
