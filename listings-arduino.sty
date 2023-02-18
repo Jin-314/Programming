@@ -1,0 +1,145 @@
+
+\ProvidesFile{listings-arduino.sty}
+\usepackage[dvipdfmx]{color}
+
+\definecolor{lst-arduino-sngq}{rgb}{0.000, 0.592, 0.612}
+\definecolor{lst-arduino-dblq}{rgb}{0.000, 0.361, 0.373}
+\definecolor{lst-arduino-literal1}{rgb}{0.000, 0.592, 0.612} % BLUE #00979C
+\definecolor{lst-arduino-keyword1}{rgb}{0.827, 0.329, 0.000} % ORANGE #D35400
+\definecolor{lst-arduino-keyword2}{rgb}{0.827, 0.329, 0.000} % ORANGE #D35400
+\definecolor{lst-arduino-keyword3}{rgb}{0.447, 0.557, 0.000} % GREEN #728E00
+\definecolor{lst-arduino-directive}{rgb}{0.369, 0.427, 0.012}
+\definecolor{lst-arduino-commentc}{rgb}{0.584, 0.647, 0.651}
+\definecolor{lst-arduino-commentcpp}{rgb}{0.263, 0.310, 0.329}
+\definecolor{lst-arduino-identifier}{rgb}{0.000, 0.000, 0.000}
+
+\lstdefinelanguage{Arduino}
+{
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  morestring=[s][\color{lst-arduino-sngq}]{'}{'},
+  morestring=[s][\color{lst-arduino-dblq}]{"}{"},
+  keywordstyle=[1]{\color{lst-arduino-literal1}},% LITERAL1(BLUE)
+  keywordstyle=[2]{\color{lst-arduino-keyword1}\bfseries},% KEYWORD1(ORANGE)
+  keywordstyle=[3]{\color{lst-arduino-keyword2}},% KEYWORD2(ORANGE)
+  keywordstyle=[4]{\color{lst-arduino-keyword3}},% KEYWORD3(GREEN)
+  directivestyle={\color{lst-arduino-directive}},
+  morecomment=[s][\color{lst-arduino-commentc}]{/*}{*/},
+  morecomment=[l][\color{lst-arduino-commentcpp}]{//},
+  identifierstyle={\color{lst-arduino-identifier}},
+  morekeywords=[1]{
+    %%% LITERAL1
+    SPI_CLOCK_DIV4, SPI_CLOCK_DIV16, SPI_CLOCK_DIV64, SPI_CLOCK_DIV128, SPI_CLOCK_DIV2,
+    SPI_CLOCK_DIV8, SPI_CLOCK_DIV32, SPI_CLOCK_DIV64, SPI_MODE0, SPI_MODE1,
+    SPI_MODE2, SPI_MODE3, HID_TX, HIGH, LOW,
+    INPUT, INPUT_PULLUP, OUTPUT, DEC, BIN,
+    HEX, OCT, PI, HALF_PI, TWO_PI,
+    LSBFIRST, MSBFIRST, CHANGE, FALLING, RISING,
+    DEFAULT, EXTERNAL, INTERNAL, INTERNAL1V1, INTERNAL2V56,
+    LED_BUILTIN, LED_BUILTIN_RX, LED_BUILTIN_TX, DIGITAL_MESSAGE, FIRMATA_STRING,
+    ANALOG_MESSAGE, REPORT_DIGITAL, REPORT_ANALOG, SET_PIN_MODE, SYSTEM_RESET,
+    SYSEX_START, auto, int8_t, int16_t, int32_t,
+    int64_t, uint8_t, uint16_t, uint32_t, uint64_t,
+    char16_t, char32_t, operator, enum, delete,
+    bool, boolean, byte, char, const,
+    false, float, double, null, NULL,
+    int, long, new, private, protected,
+    public, short, signed, static, volatile,
+    String, void, true, unsigned, word,
+    array, sizeof, dynamic_cast, typedef, const_cast,
+    struct, static_cast, union, friend, extern,
+    class, reinterpret_cast, register, explicit, inline,
+    _Bool, complex, _Complex, _Imaginary, atomic_bool,
+    atomic_char, atomic_schar, atomic_uchar, atomic_short, atomic_ushort,
+    atomic_int, atomic_uint, atomic_long, atomic_ulong, atomic_llong,
+    atomic_ullong, virtual, PROGMEM, EsploraTFT, ERROR,
+    IDLE, CONNECTING, GSM_READY, GPRS_READY, TRANSPARENT_CONNECTED,
+    IDLE_CALL, CALLING, RECEIVINGCALL, TALKING, GSM_MODE_UNDEFINED,
+    GSM_MODE_EGSM, GSM_MODE_DCS, GSM_MODE_PCS, GSM_MODE_EGSM_DCS, GSM_MODE_GSM850_PCS,
+    GSM_MODE_GSM850_EGSM_DCS_PCS,
+  },
+  morekeywords=[2]{
+    %%% KEYWORD1
+    EEPROM, EERef, SoftwareSerial, SPI, HID,
+    Serial, Serial1, Serial2, Serial3, SerialUSB,
+    Keyboard, Mouse, Stepper, Adafruit_GFX, Adafruit_ST7735,
+    PImage, TFT, Ethernet, EthernetClient, EthernetServer,
+    IPAddress, GSM, GSMVoiceCall, GSM_SMS, GPRS,
+    GSMClient, GSMServer, GSMModem, GSMScanner, GSMPIN,
+    GSMBand, WiFi, WiFiUdp, Client, Server,
+  },
+  morekeywords=[3]{
+    %%% KEYWORD2
+    EEPtr, update, begin, end, read,
+    write, available, isListening, overflow, flush,
+    listen, peek, begin, end, transfer,
+    setBitOrder, setDataMode, setClockDivider, begin, setClock,
+    beginTransmission, endTransmission, requestFrom, onReceive, onRequest,
+    Wire, begin, SendReport, AppendDescriptor, abs,
+    acos, asin, atan, atan2, ceil,
+    constrain, cos, degrees, exp, floor,
+    log, map, max, min, radians,
+    random, randomSeed, round, sin, sq,
+    sqrt, tan, pow, bitRead, bitWrite,
+    bitSet, bitClear, bit, highByte, lowByte,
+    analogReference, analogRead, analogReadResolution, analogWrite, analogWriteResolution,
+    attachInterrupt, detachInterrupt, digitalPinToInterrupt, delay, delayMicroseconds,
+    digitalWrite, digitalRead, interrupts, millis, micros,
+    noInterrupts, noTone, pinMode, pulseIn, pulseInLong,
+    shiftIn, shiftOut, tone, yield, Stream,
+    begin, end, peek, read, print,
+    println, available, availableForWrite, flush, setTimeout,
+    find, findUntil, parseInt, parseFloat, readBytes,
+    readBytesUntil, readString, readStringUntil, trim, toUpperCase,
+    toLowerCase, charAt, compareTo, concat, endsWith,
+    startsWith, equals, equalsIgnoreCase, getBytes, indexOf,
+    lastIndexOf, length, replace, setCharAt, substring,
+    toCharArray, toInt, press, release, releaseAll,
+    accept, click, move, isPressed, isAlphaNumeric,
+    isAlpha, isAscii, isWhitespace, isControl, isDigit,
+    isGraph, isLowerCase, isPrintable, isPunct, isSpace,
+    isUpperCase, isHexadecimalDigit, step, setSpeed, version,
+    direction, speed, drawPixel, invertDisplay, drawLine,
+    drawFastVLine, drawFastHLine, drawRect, fillRect, fillScreen,
+    drawCircle, drawCircleHelper, fillCircle, fillCircleHelper, drawTriangle,
+    fillTriangle, drawRoundRect, fillRoundRect, drawBitmap, drawChar,
+    setCursor, setTextColor, setTextSize, setTextWrap, height,
+    width, setRotation, getRotation, newColor, background,
+    fill, noFill, stroke, noStroke, text,
+    textWrap, textSize, circle, point, quad,
+    rect, triangle, loadImage, image, draw,
+    isValid, status, connect, write, available,
+    read, peek, flush, stop, connected,
+    begin, beginPacket, endPacket, parsePacket, remoteIP,
+    remotePort, getSocketNumber, localIP, maintain, begin,
+    shutdown, gatVoiceCallStatus, ready, voiceCall, answerCall,
+    hangCall, retrieveCallingNumber, beginSMS, endSMS, remoteNumber,
+    attachGPRS, begnWrite, endWrite, getIMEI, getCurrentCarrier,
+    getSignalStrength, readNetworks, isPIN, checkPIN, checkPUK,
+    changePIN, switchPIN, checkReg, getPINUsed, setPINUsed,
+    getBand, setBand, getvoiceCallStatus, firmwareVersion, status,
+    connect, write, available, config, setDNS,
+    read, flush, stop, connected, begin,
+    disconnect, macAddress, localIP, subnetMask, gatewayIP,
+    SSID, BSSID, RSSI, encryptionType, getResult,
+    getSocket, WiFiClient, WiFiServer, WiFiUDP, beginPacket,
+    endPacket, parsePacket, remoteIP, remotePort,
+  },
+  morekeywords=[4]{
+    %%% KEYWORD3
+    break, case, override, final, continue,
+    default, do, else, for, if,
+    return, goto, switch, throw, try,
+    while, setup, loop, export, not,
+    or, and, xor,
+  },
+  moredelim=*[directive]\#,
+  moredirectives={
+    define,elif,else,endif,error,if,ifdef,ifndef,line,%
+    include,pragma,undef,warning
+  },
+  sensitive=true
+}
+
+\endinput

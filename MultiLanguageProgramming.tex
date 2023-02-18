@@ -1,11 +1,33 @@
 \documentclass[dvipdfmx]{beamer}
 %テーマの設定
 \usetheme[numbering=fullbar]{focus}
+
 %パッケージの設定
 \usepackage{graphicx}
 \usepackage{pxjahyper}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning}
+\usepackage{listings, jlisting}
+\usepackage{listings-arduino, listings-javascript}
+\usepackage{xcolor}
+
+%色設定
+\definecolor{identifier}{RGB}{225, 123, 52}       %#e17b34
+\definecolor{comment}{RGB}{105, 130, 27}          %#69821b
+\definecolor{keyword}{RGB}{170, 76, 143}          %#aa4c8f
+\definecolor{string}{RGB}{39, 146, 195}           %#2792c3
+
+%ソースコード設定
+\lstset{
+  basicstyle={\ttfamily},                         % 基礎の文字のフォント設定
+  identifierstyle={\color{identifier}},           % 変数名などのフォント設定
+  commentstyle   ={\color{comment}},              % コメントのフォント設定
+  keywordstyle   =[1]{\color{keyword}},           % 予約語のフォント設定
+  stringstyle    ={\ttfamily\color{string}},      % 文字列のフォント設定
+  tabsize=2,
+  columns=fixed,
+}
+
 
 %フォント設定
 \renewcommand{\kanjifamilydefault}{\gtdefault}
@@ -120,11 +142,42 @@
     \end{itemize}
   \end{frame}
 
-  \begin{frame}{基本的な骨格とは}
-    \begin{itemize}
-      \item 冒頭で\structure{ライブラリ}の宣言
-      \item \structure{メインループ}で処理、UI等の場合では\structure{イベント}を処理
-      \item \structure{サブルーチン（関数）}にて繰り返し処理
-    \end{itemize}
+  \begin{frame}[fragile]{基本的な骨格とは}
+    \begin{columns}
+      \begin{column}{0.6\textwidth}
+        \begin{itemize}
+          \item 冒頭で\structure{ライブラリ}の宣言
+          \item \structure{メインループ}で処理\\UI等の場合では\structure{イベント}を処理
+          \item \structure{サブルーチン（関数）}にて\\繰り返し処理
+        \end{itemize}
+        \begin{exampleblock}{C言語の例}
+          \begin{lstlisting}[language=C]
+#include <stdio.h>
+int main(void){
+  printf('Hello World');
+  return 0;
+}
+    
+          \end{lstlisting}
+        \end{exampleblock}
+      \end{column}
+      \begin{column}{0.4\textwidth}
+        \begin{exampleblock}{Arduinoの例}
+          \begin{lstlisting}[language=Arduino,basicstyle=\footnotesize]
+void setup(){
+  pinMode(2, OUTPUT);
+}
+void loop(){
+  digitalWrite(2, HIGH);
+  delay(200);
+  digitalWrite(2,LOW);
+  delay(200);
+}
+
+          \end{lstlisting}
+        \end{exampleblock}
+      \end{column}
+    \end{columns}
   \end{frame}
+  
 \end{document}

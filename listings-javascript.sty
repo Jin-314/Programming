@@ -1,0 +1,46 @@
+\ProvidesFile{listings-javascript.sty}
+\usepackage[dvipdfmx]{color}
+
+\definecolor{comment}{rgb}{0.52,0.60,0.00} 
+\definecolor{string}{rgb}{0.83,0.21,0.51} 
+\definecolor{keyword1}{rgb}{0.15,0.55,0.82} 
+\definecolor{keyword2}{rgb}{0.80,0.29,0.09} 
+\definecolor{keyword3}{rgb}{0.71,0.54,0.00} 
+\definecolor{keyword4}{rgb}{0.42,0.44,0.77}
+
+\lstdefinelanguage{javascript}
+{
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  keywordstyle=[1]{\color{keyword1}\textbf},
+  keywordstyle=[2]{\color{keyword2}\textbf},
+  keywordstyle=[3]{\color{keyword3}\textbf},
+  keywordstyle=[4]{\color{keyword4}\textbf},
+  commentstyle={\gtfamily\scriptsize\color{comment}},
+  stringstyle={\gtfamily\scriptsize\color{string}},
+  morekeywords = [1]{ %keywords
+    await, break, case, catch, class, const, continue, debugger, default, delete, 
+    do, else, enum, export, extends, finally, for, function, function*, if, implements, import, in, 
+    instanceof, interface, let, new, package, private, protected, public, return, static, super,
+    switch, this, throw, try, typeof, var, void, while, with, yield, yield*
+  },
+  morekeywords = [2]{ %literal
+    false, Infinity, NaN, null, true, undefined
+  },
+  morekeywords = [3] { %Classes
+    Array, ArrayBuffer, Boolean, DataView, Date, Error, EvalError, Float32Array, Float64Array,
+    Function, Generator, GeneratorFunction, Int16Array, Int32Array, Int8Array, InternalError,
+    JSON, Map, Math, Number, Object, Promise, Proxy, RangeError, ReferenceError, Reflect,
+    RegExp, Set, String, Symbol, SyntaxError, TypeError, URIError, Uint16Array, Uint32Array,
+    Uint8Array, Uint8ClampedArray, WeakMap, WeakSet
+  },
+  morecomment = [l]{//},
+  morecomment = [s]{/*}{*/},
+  morestring = [b]{"},
+  morestring = [b]{'},
+  alsodigit = {-},
+  sensitive = true
+}
+
+\endinput
