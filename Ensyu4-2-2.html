@@ -1,0 +1,23 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>演習４－２</title>
+</head>
+<body>
+<pre>
+<script type="text/javascript">
+    
+let max = 5, min = 1;
+var rand1 = Math.floor(Math.random() * (max - min) + min);
+var rand2 = 0;
+while(rand1 != rand2){
+    rand2 = Math.floor(Math.random() * (max - min) + min);
+}
+
+document.writeln(`${rand1}=${rand2}`);
+
+</script>
+<noscript>JavaScriptが利用できません。</noscript>
+</pre>
+</body>
+</html>

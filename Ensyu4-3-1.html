@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>演習４－３</title>
+</head>
+<body>
+<pre>
+<script type="text/javascript">
+
+function sleep(msec) {
+   return new Promise(function(resolve) {
+ 
+      setTimeout(function() {resolve()}, msec);
+ 
+   })
+}
+
+async function brackhole(){
+    for(var month = 1; month < 13; month++){
+        await sleep(1500);
+
+        document.writeln(`${month}月が過ぎました。<br>`);
+    }
+}
+
+brackhole();
+
+</script>
+<noscript>JavaScriptが利用できません。</noscript>
+</pre>
+</body>
+</html>
