@@ -7,7 +7,7 @@
 \usepackage{pxjahyper}
 \usepackage{hyperref}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning}
+\usetikzlibrary{arrows.meta,positioning,shapes}
 \usepackage{listings, jlisting}
 \usepackage{listings-arduino, listings-html5, listings-javascript}
 \usepackage{xcolor}
@@ -20,7 +20,7 @@
 
 %ソースコード設定
 \lstset{
-  basicstyle={\ttfamily\footnotesize},                         % 基礎の文字のフォント設定
+  basicstyle={\ttfamily\footnotesize},            % 基礎の文字のフォント設定
   identifierstyle={\color{identifier}},           % 変数名などのフォント設定
   commentstyle   ={\color{comment}},              % コメントのフォント設定
   keywordstyle   =[1]{\color{keyword}},           % 予約語のフォント設定
@@ -202,8 +202,9 @@ void loop(){
           \setlength{\itemsep}{3mm}
           \item \structure{html}ファイルの\structure{<script>}タグ内
           \item ディスプレイさせる関数\\
-          \lstinline[language=javascript]|document.writeln('|{\color{string}文字列 '}\lstinline[language=javascript]|)|
-          \item 文末には\structure{；}(\structure{セミコロン})をつける
+          \lstinline[language=javascript]|document.writeln('|{\color{string}\footnotesize 文字列 '}\lstinline[language=javascript]|)|
+          \item 文末には\structure{；}をつける
+          \item 文字列は\structure{’}か\structure{”}で囲う
         \end{itemize}
       \end{column}
       \begin{column}{0.45\textwidth}
@@ -234,10 +235,13 @@ void loop(){
     \end{columns}
   \end{frame}
 
-  \begin{frame}{演習１：回答}{プログラミングとは}
+  \begin{frame}{演習１：解答}{プログラミングとは}
     \begin{exampleblock}{演習１}
       \lstinputlisting[language=javascript]{Ensyu/Ensyu1/Ensyu1.js}
     \end{exampleblock}
+    \vspace{5mm}
+    \centering
+    \includegraphics[height=3cm]{pic/Chap1/pic1.png}
   \end{frame}
 
 \section*{変数とデータ型}
@@ -269,6 +273,128 @@ void loop(){
         \draw[->,>={Stealth[round]},line width=.5mm] (\x) -- (\y);
       }
     \end{tikzpicture}
+  \end{frame}
+
+  \begin{frame}{変数}{変数について}
+    \begin{large}変数とは\end{large}
+    \begin{itemize}
+      \setlength{\itemsep}{3mm}
+      \item データを入れる\structure{箱}
+      \item 入れる\structure{データ}によって種類がある
+      \item 箱をひとまとめにしたもの\quad\begin{large}$\triangleright$\end{large}\quad\structure{\hyperlink{hairetsu}{配列}}
+    \end{itemize}
+    \vfill
+    \begin{large}変数の基本要素\end{large}
+    \begin{itemize}
+      \setlength{\itemsep}{3mm}
+      \item \alert{宣言}\\
+      変数を\structure{作成}すること
+      \item \alert{初期化}\\
+      変数の作成とともに\structure{数値を割り当てる}こと
+      \item \alert{代入}\\
+      変数の値を\structure{上書き}すること
+    \end{itemize}
+    \begin{tikzpicture}[overlay,remember picture]
+      \node[at=(current page.east), anchor=east] {
+        \includegraphics[height=2.4cm]{pic/Chap2/pic1.png}};
+    \end{tikzpicture}
+  \end{frame}
+
+  \begin{frame}{変数}{宣言}
+    \begin{itemize}
+      \setlength{\itemsep}{5mm}
+      \item どのような言語でも\structure{基本おなじ}
+      (pythonでは宣言が暗黙)
+      \item \structure{(修飾子) + 型 + 変数名}で宣言\\
+      \begin{center}
+        \lstinline[language=javascript]|let x;|\\
+        \lstinline[language=c]|int x;|
+      \end{center}
+      \item 変数名は\structure{予約語}以外なら原則何でも可
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{変数}{初期化}
+    \begin{itemize}
+      \item 宣言とともに値を割り当てる\\
+      (pythonでは宣言と初期化がセット)
+      \item 型 + 変数名 \structure{= 初期値}で宣言 + \structure{初期化}をセットで\\
+      \begin{center}
+        \lstinline[language=javascript]|let x = 100;|\\
+        \lstinline[language=c]|int x = 100;|
+      \end{center}
+      \item 静的型付けでは\structure{初期値の型}が一致している必要がある。\\
+      \begin{center}
+        \tikz[baseline=(T.base)]{
+          \node[draw=red,shape=cross out,inner sep=2pt,outer sep=0pt] (T) {
+            \lstinline[language=c]|int x = 'a';|
+          };%
+        }
+      \end{center}
+    \end{itemize}
+    \vspace{3mm}
+    \begin{large}初期化をしないと...\end{large}
+    \begin{center}
+      ランダムに適当な値（\structure{不定値}）が割り当てられる\\
+      javascriptでは"\structure{undefined}"と出力される\\
+      \quad\begin{large}$\blacktriangleright$\end{large}予測してない結果になる可能性がある\\
+      \begin{Large}$\blacktriangledown$\end{Large}\\
+      基本的に\structure{宣言}と\structure{初期化}はセットでする
+    \end{center}
+  \end{frame}
+
+  \begin{frame}{変数}{代入}
+    \begin{itemize}
+      \setlength{\itemsep}{5mm}
+      \item 変数を\structure{上書き}して内部の値を更新する
+      \item 宣言後、任意の場所で 変数名 \structure{= 値}\\
+      \begin{center}
+        \lstinline[language=javascript]|let x = 100;|\\
+        \lstinline[language=javascript]|x = 200;|
+      \end{center}
+      \item =は実は\structure{\hyperlink{enzan}{演算子}}
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{演習２－１：問題}{変数とデータ型}
+    \begin{Large}\lstinline[language=javascript]|let|型の変数を用いて{\color{string}Hello World}を表示させる\end{Large}
+    \begin{enumerate}
+      \setlength{\itemsep}{5mm}
+      \item \alert{宣言}は \structure{型(今回は\lstinline[language=javascript]|let|) + 変数名(適当)}
+      \item \alert{初期化}は 宣言 \structure{= 初期値}
+      \item 文字列は\structure{’}か\structure{”}で囲う
+      \item \lstinline[language=javascript]|document.writeln(|{\color{string}\begin{footnotesize}変数名\end{footnotesize}}\lstinline[language=javascript]|)|
+      を使用して表示させよう
+    \end{enumerate}
+  \end{frame}
+
+  \begin{frame}{演習２－１：解答}{変数とデータ型}
+    \begin{exampleblock}{演習２－１}
+      \lstinputlisting[language=javascript]{Ensyu/Ensyu2/Ensyu2-1.js}
+    \end{exampleblock}
+    \vspace{5mm}
+    \centering
+    \includegraphics[height=3cm]{pic/Chap2/pic2.png}
+  \end{frame}
+
+  \begin{frame}{データ型}{データ型について}
+    
+  \end{frame}
+
+  \begin{frame}{データ型}{動的型付けについて}
+    
+  \end{frame}
+  
+  \begin{frame}{データ型}{データ型の使い分け}
+    
+  \end{frame}
+
+  \begin{frame}{演習２－２：問題}{変数とデータ型}
+    
+  \end{frame}
+  
+  \begin{frame}{演習２－２：解答}{変数とデータ型}
+    
   \end{frame}
   
 \section*{演算と演算子}
