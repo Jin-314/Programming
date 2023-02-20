@@ -4,6 +4,7 @@
 
 %パッケージの設定
 \usepackage{graphicx}
+\usepackage{ulem}
 \usepackage{pxjahyper}
 \usepackage{hyperref}
 \usepackage{tikz}
@@ -61,8 +62,8 @@
     \begin{itemize}
       \setlength{\itemsep}{5mm}
       \item \structure{多言語}にわたるプログラミングを\structure{独学する}術を身に付ける
-      \item 基本的な\structure{用語}や\structure{技術}を学び、\structure{活かせる力}を身に付ける
-      \item マイコンやウェブなど、\structure{広い範囲に適応できる}人材育成
+      \item 基本的な\structure{用語}や\structure{技術}を学び \structure{活かせる力}を身に付ける
+      \item マイコンやウェブなど \structure{広い範囲に適応できる}人材育成
     \end{itemize}
     \vfill
     \begin{large}進め方\end{large}
@@ -133,9 +134,9 @@
     \begin{large}プログラミングどんなもの？\end{large}
     \begin{itemize}
       \setlength{\itemsep}{3mm}
-      \item プログラミングには様々な種類が存在\\ウェブ、マイコン、ゲーム...etc
+      \item プログラミングには様々な種類が存在\\ウェブ マイコン ゲーム...etc
       \item 大まかには２種類\\\structure{オブジェクト指向}と\structure{構造化プログラミング}（後述）
-      \item \structure{骨格}は基本的に共通\\関数や変数など、基本的な\structure{骨格}がある
+      \item \structure{骨格}は基本的に共通\\関数や変数など 基本的な\structure{骨格}がある
     \end{itemize}
     \vfill
     \begin{large}プログラミング言語\end{large}
@@ -316,6 +317,7 @@ void loop(){
 
   \begin{frame}{変数}{初期化}
     \begin{itemize}
+      \setlength{\itemsep}{2mm}
       \item 宣言とともに値を割り当てる\\
       (pythonでは宣言と初期化がセット)
       \item 型 + 変数名 \structure{= 初期値}で宣言 + \structure{初期化}をセットで\\
@@ -332,7 +334,6 @@ void loop(){
         }
       \end{center}
     \end{itemize}
-    \vspace{3mm}
     \begin{large}初期化をしないと...\end{large}
     \begin{center}
       ランダムに適当な値（\structure{不定値}）が割り当てられる\\
@@ -347,7 +348,7 @@ void loop(){
     \begin{itemize}
       \setlength{\itemsep}{5mm}
       \item 変数を\structure{上書き}して内部の値を更新する
-      \item 宣言後、任意の場所で 変数名 \structure{= 値}\\
+      \item 宣言後 任意の場所で 変数名 \structure{= 値}\\
       \begin{center}
         \lstinline[language=javascript]|let x = 100;|\\
         \lstinline[language=javascript]|x = 200;|
@@ -357,6 +358,7 @@ void loop(){
   \end{frame}
 
   \begin{frame}{演習２－１：問題}{変数とデータ型}
+    \label{ensyu2-1}
     \begin{Large}\lstinline[language=javascript]|let|型の変数を用いて{\color{string}Hello World}を表示させる\end{Large}
     \begin{enumerate}
       \setlength{\itemsep}{5mm}
@@ -378,23 +380,84 @@ void loop(){
   \end{frame}
 
   \begin{frame}{データ型}{データ型について}
-    
+    \begin{large}データ型とは\end{large}
+    \begin{itemize}
+      \setlength{\itemsep}{2mm}
+      \item 変数に入る\structure{データ}を予め決めておかなければいけない\\
+      $\Longrightarrow$ 予め決める言語を\structure{静的型付け}言語という
+      \item 整数(\lstinline[language=c]|int|)型や 文字(\lstinline[language=c]|char|)型など多数ある
+    \end{itemize}
+    \vspace{2mm}
+    \textreferencemark \lstinline[language=javascript]|var|型や\lstinline[language=javascript]|let|型は直接なデータ型ではない
+    \begin{table}[hbtp]
+      \setlength\abovecaptionskip{0pt}
+      \caption{様々なデータ型}
+      \label{tab:table1}
+      \centering
+      \footnotesize
+      \begin{tabular}{lcr}
+        \hline
+        分類 & 名前 & 値の例\\
+        \hline \hline
+        論理型 & \lstinline[language=javascript]|Boolean| & True, false\\
+        文字型 & \lstinline[language=c]|char| & a, b, c\\
+        文字列型 & \lstinline[language=javascript]|String| & abc \\
+        整数型 & \lstinline[language=c]|int| & 1, 333\\
+        浮動小数点型 & \lstinline[language=c]|float|, \lstinline[language=c]|double| & 0.5, 0.0093\\
+        配列型 & \lstinline[language=javascript]|Array| & [1,2,3]\\
+        オブジェクト型 & \lstinline[language=javascript]|Object| & {x:1, y:2, z:3}\\
+        \hline
+      \end{tabular}
+    \end{table}
+    \centering
+    \structure{言語}によってバラツキがあるので 使用したい言語で確認する
+    \vspace*{3mm}
   \end{frame}
 
   \begin{frame}{データ型}{動的型付けについて}
-    
+    \begin{itemize}
+      \setlength{\itemsep}{5mm}
+      \item JavaScriptでは\structure{自動}でデータ型が割り当てられる\\
+      $\Longrightarrow$ \structure{動的型付け}言語という
+      \item よく使われるのは\lstinline[language=javascript]|var|と\lstinline[language=javascript]|let|の2種類
+      \item \lstinline[language=javascript]|var|は\structure{宣言の重複}ができ \lstinline[language=javascript]|let|は不可
+      \item \lstinline[language=javascript]|var|は後述の\structure{スコープ}が特殊なので \uuline{基本的には\lstinline[language=javascript]|let|を使用}
+    \end{itemize}
   \end{frame}
   
   \begin{frame}{データ型}{データ型の使い分け}
-    
+    \begin{description}
+      \setlength{\itemsep}{5mm}
+      \item[\alert{サイズ}による使い分け]\mbox{}\\変数の\structure{データ型}には\alert{サイズ}がある
+      \item[\alert{オーバーフロー}]\mbox{}\\サイズを超えると\structure{エラー}が起きたり\\\structure{予想しない}結果になることも
+    \end{description}
+    \vspace{5mm}
+    \textreferencemark 使用する言語で変数のサイズを確認して使用しよう
   \end{frame}
 
   \begin{frame}{演習２－２：問題}{変数とデータ型}
-    
+    \begin{Large}\lstinline[language=javascript]|var|型と\lstinline[language=javascript]|let|型の違いを確認する(\alert{宣言の重複})\end{Large}\\
+    \begin{enumerate}
+      \setlength{\itemsep}{5mm}
+      \item \lstinline[language=javascript]|var|型の変数1を\structure{宣言+初期化}する
+      \item \lstinline[language=javascript]|var|型の変数1をもう一度\structure{宣言+初期化}し 表示
+      \item \lstinline[language=javascript]|let|型の変数2を\structure{宣言+初期化}する
+      \item \lstinline[language=javascript]|let|型の変数2をもう一度\structure{宣言+初期化}し 表示
+    \end{enumerate}
+    \textreferencemark 変数については\hyperlink{ensyu2-1}{演習２－１}を参照\\\lstinline[language=javascript]|document.writeln('')|を使用し 表示
   \end{frame}
   
   \begin{frame}{演習２－２：解答}{変数とデータ型}
-    
+    \begin{columns}
+      \begin{column}{0.41\textwidth}
+        \begin{exampleblock}{演習２－２}
+          \lstinputlisting[language=javascript]{Ensyu/Ensyu2/Ensyu2-2.js}
+        \end{exampleblock}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \includegraphics[width=\textwidth]{pic/Chap2/pic3.png}
+      \end{column}
+    \end{columns}
   \end{frame}
   
 \section*{演算と演算子}
